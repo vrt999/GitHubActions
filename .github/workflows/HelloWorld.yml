@@ -10,7 +10,8 @@ jobs:
         env:
           printable: World
         run: echo "Hello ${{env.printable}}"
-
+      - name: checkout the repo
+        uses: actions/checkout@v3
       - name: calling composite action
         id: calling-action-step
         uses: ./.github/workflows/action.yml@main

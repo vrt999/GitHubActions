@@ -25,6 +25,11 @@ jobs:
         env:
           random_output: ${{steps.calling-action-step.outputs.action_output}}
       - name: execute shell script
+        id: execute_shell_script
         run: ./scripts/SampleShellScript.sh
         shell: bash
+      - name: Use the output from shell script
+        run: echo "$shell_output"
+        env:
+          shell_output: ${{steps.execute_shell_script.outputs.outsh}}
 

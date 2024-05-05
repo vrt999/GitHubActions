@@ -12,8 +12,11 @@ jobs:
         run: echo "Hello ${{env.printable}}"
       - name: checkout the repo
         uses: actions/checkout@v3
+      # The composite action has to be only with the name action.yaml or action.yml
+      # To have multiple composite actions, we need to have separate directories for each action and inside it action.yml will be present
       - name: calling composite action
         id: calling-action-step
+        #only path to directory for action.yml should be mentioned for composite actions
         uses: ./.github/workflows
         with:
           action_input: Ravi
@@ -21,4 +24,7 @@ jobs:
         run: echo "Random Number --> $random_output"
         env:
           random_output: ${{steps.calling-action-step.outputs.action_output}}
+      - name: execute shell script
+        run: SampleShellScript.sh
+        shell: bash
 

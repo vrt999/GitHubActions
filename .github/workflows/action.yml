@@ -12,24 +12,19 @@ outputs:
 
 runs:
   using: "composite"
-  defaults:
-    run:
-      shell: bash
   steps:
     - name: Print action input
       id: print_input_id
       run: echo "input --> $input"
+      shell: bash
       env:
         input: ${{inputs.action_input}}
     - name: compute random number
       id: random-number-generate
+      shell: bash
       run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
     - name: print output
       id: print-output
-      run: echo "Output --> ${{steps.random-number-generate.outputs.random-number}}"
-    - name: set GitHub action path
-      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
       shell: bash
-      env:
-        GITHUB_ACTION_PATH: ${{github.action_path}}
+      run: echo "Output --> ${{steps.random-number-generate.outputs.random-number}}"
 

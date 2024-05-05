@@ -9,4 +9,4 @@ jobs:
       - name: print Hello World
         env:
           printable: World
-        run: "echo 'Hello $printable'"
+        run: echo "Hello ${{env.printable}}"

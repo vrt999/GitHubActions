@@ -10,3 +10,14 @@ jobs:
         env:
           printable: World
         run: echo "Hello ${{env.printable}}"
+
+      - name: calling composite action
+        id: calling-action-step
+        uses: ./.github/workflows/action.yml@main
+        with:
+          action_input: Ravi
+      - name: print called action output
+        run: echo "Random Number --> $random-output"
+        env:
+          random-output: ${{steps.calling-action-step.outputs.action_output}}
+

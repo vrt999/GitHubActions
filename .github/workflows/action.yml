@@ -1,0 +1,30 @@
+name: simple composite action
+description: action description
+inputs:
+  action_input:
+    description: Action input description
+    required: true
+    default: action_default_value
+outputs:
+  action_output:
+    description: Action output description
+    value: ${{steps.random-number-generate.outputs.random-number}}
+
+runs:
+  using: "composite"
+  defaults:
+    run:
+      shell: bash
+  steps:
+    - name: Print action input
+      id: print_input_id
+      run: echo "input --> $input"
+      env:
+        input: ${{inputs.action_input}}
+    - name: compute random number
+      id: random-number-generate
+      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+    - name: print output
+      id: print-output
+      run: echo "Output --> ${{steps.random-number-generate.outputs.random-number}}"
+

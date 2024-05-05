@@ -18,7 +18,7 @@ jobs:
         with:
           action_input: Ravi
       - name: print called action output
-        run: echo "Random Number --> $random-output"
+        run: echo "Random Number --> $random_output"
         env:
-          random-output: ${{steps.calling-action-step.outputs.action_output}}
+          random_output: ${{steps.calling-action-step.outputs.action_output}}
 

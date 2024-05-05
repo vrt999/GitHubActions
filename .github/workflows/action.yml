@@ -28,7 +28,7 @@ runs:
       id: print-output
       run: echo "Output --> ${{steps.random-number-generate.outputs.random-number}}"
     - name: set GitHub action path
-      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_OUTPUT
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
       shell: bash
       env:
         GITHUB_ACTION_PATH: ${{github.action_path}}

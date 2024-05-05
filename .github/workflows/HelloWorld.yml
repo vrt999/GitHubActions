@@ -25,6 +25,6 @@ jobs:
         env:
           random_output: ${{steps.calling-action-step.outputs.action_output}}
       - name: execute shell script
-        run: SampleShellScript.sh
+        run: ./scripts/SampleShellScript.sh
         shell: bash
 
